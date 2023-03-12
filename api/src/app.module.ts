@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from './config/database-config';
 import jwtConfig from './config/jwt-config';
+import { PostModule } from './post/post.module';
+import { JwtGuard } from './user/guards/jwt.guard';
 import { UserModule } from './user/user.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -24,7 +28,15 @@ import { UserModule } from './user/user.module';
         synchronize: true
       })
     }),
-    UserModule
+    UserModule,
+    PostModule,
+    NotificationsModule
   ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtGuard,
+    },
+  ]
 })
 export class AppModule {}

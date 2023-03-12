@@ -10,12 +10,24 @@ import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class UserService {
-
+    
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
         private jwtService : JwtService
     ){}
+
+    async findByEmail(email: string) {
+        return await this.userRepository.findOne({
+            where : {email : email}
+        });
+      }
+
+      async findById(id: number) {
+        return await this.userRepository.findOne({
+            where : {id : id}
+        });
+      }
 
     async registerUser(registerDto : RegisterDto) : Promise<User>{
         const user = plainToClass(User,{
