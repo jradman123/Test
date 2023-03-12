@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { plainToClass } from "class-transformer";
+import { NotificationService } from "src/notifications/services/notification.service";
 import { User } from "src/user/models/user";
 import { Repository } from "typeorm";
 import { Comment } from "../models/comment";
@@ -82,6 +83,7 @@ export class PostService{
             post: post,
             text: commentDto.text
         })
+        
         return await this.commentRepository.save(comment)
     }
 

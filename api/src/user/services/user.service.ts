@@ -91,4 +91,9 @@ export class UserService {
             );
            }
     }
+
+    async getJwtUser(jwt: string)  {
+        const user =  await this.jwtService.verifyAsync(jwt);
+        return await this.findByEmail(user.email);
+    }
 }

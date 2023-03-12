@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Param, Post, Put, Request } from "@nestjs/common";
+import { NotificationGateway } from "src/notifications/gateway/notification.gateway";
 import { GetUser } from "src/user/decorators/get-user.decorator";
 import { User } from "src/user/models/user";
 import { CommentDto } from "../models/dtos/comment-dto";
@@ -8,7 +9,7 @@ import { PostService } from "../services/post.service";
 @Controller('posts')
 export class PostController {
 
-    constructor(private postService: PostService){}
+    constructor(private postService: PostService, private notificationGateway: NotificationGateway){}
 
     @Post()
     createPost(@GetUser() user: User,@Body() postDto : PostDto) {

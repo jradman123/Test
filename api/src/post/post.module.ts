@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { NotificationsModule } from 'src/notifications/notifications.module';
 import { PostController } from './controllers/post.controller';
 import { Comment } from './models/comment';
 import { Like } from './models/like';
@@ -8,7 +9,8 @@ import { PostService } from './services/post.service';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Post, Like, Comment])
+        TypeOrmModule.forFeature([Post, Like, Comment]),
+        NotificationsModule
     ],
     providers: [PostService],
     controllers: [PostController]
