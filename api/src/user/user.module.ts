@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthController } from './controllers/auth.controller';
 import { UserController } from './controllers/user.controller';
 import { User } from './models/user';
 import { UserService } from './services/user.service';
@@ -18,7 +19,7 @@ import { UserService } from './services/user.service';
         }),
         TypeOrmModule.forFeature([User])
 ],
-    controllers: [UserController],
+    controllers: [UserController, AuthController],
     providers: [UserService]
 })
 export class UserModule {

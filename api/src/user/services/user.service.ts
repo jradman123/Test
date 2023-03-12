@@ -5,13 +5,16 @@ import { Repository } from "typeorm";
 import { RegisterDto } from "../models/dtos/register-dto";
 import { User } from "../models/user";
 import * as argon2 from "argon2";
+import { LoginDto } from "../models/dtos/login-dto";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class UserService {
 
     constructor(
         @InjectRepository(User)
-        private readonly userRepository: Repository<User>
+        private readonly userRepository: Repository<User>,
+        private jwtService : JwtService
     ){}
 
     async registerUser(registerDto : RegisterDto) : Promise<User>{
@@ -39,5 +42,41 @@ export class UserService {
         }
         
         
+    }
+
+    async login(loginDto : LoginDto) {
+      const user = await this.validateUser(loginDto);
+      if(user){
+        let token = await this.jwtService.signAsync({user});
+        return token;
+      }
+
+    }
+
+    async validateUser(loginDto : LoginDto) : Promise<User> {
+        const user = await this.userRepository.findOne({
+            where : {email : loginDto.email}
+        })
+        if(user){
+            let pwMatches = await argon2.verify(user.password, loginDto.password)
+            if(!pwMatches){
+                throw new HttpException(
+                    { 
+                        status: HttpStatus.BAD_REQUEST,
+                        error: 'Invalid password!' 
+                    },
+                        HttpStatus.BAD_REQUEST,
+                    );
+            }
+            return user;
+        }else{
+            throw new HttpException(
+            { 
+                status: HttpStatus.BAD_REQUEST,
+                error: 'User does not exist!' 
+            },
+                HttpStatus.BAD_REQUEST,
+            );
+           }
     }
 }
