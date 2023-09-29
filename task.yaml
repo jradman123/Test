@@ -1,0 +1,13 @@
+parameters:
+- name: dataset
+  description: dataset
+  value: null
+  data_type: dataset
+  required: true
+  type: 2
+- name: augmentationDataset
+  description: augmentation dataset
+  value: null
+  data_type: dataset
+  required: false
+  type: 2
