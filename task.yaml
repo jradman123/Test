@@ -23,7 +23,7 @@ param_groups:
         value: null
         data_type: dataset
         required: false
-   - name: outputs
+  - name: outputs
     params:
       - name: dataset
         description: dataset
