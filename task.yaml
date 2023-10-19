@@ -13,12 +13,12 @@ param_groups:
         required: false
   - name: inputs
     params:
-      - name: dataset
+      - name: name
         description: dataset
         value: null
         data_type: dataset
         required: true
-      - name: augmentationDataset
+      - name: namedat
         description: augmentation dataset
         value: null
         data_type: dataset
