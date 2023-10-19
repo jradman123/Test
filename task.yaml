@@ -1,0 +1,26 @@
+param_groups:
+  - name: parameters
+    params:
+      - name: dataset
+        description: dataset
+        value: null
+        data_type: dataset
+        required: true
+      - name: augmentationDataset
+        description: augmentation dataset
+        value: null
+        data_type: dataset
+        required: false
+  - name: inputs
+    params:
+      - name: dataset
+        description: dataset
+        value: null
+        data_type: dataset
+        required: true
+      - name: augmentationDataset
+        description: augmentation dataset
+        value: null
+        data_type: dataset
+        required: false
+
