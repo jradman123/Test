@@ -1,33 +1,35 @@
 param_groups:
   - name: parameters
     params:
-      - name: dataset
-        description: dataset
+      - name: output
+        description: description
         value: null
         data_type: dataset
         required: true
-      - name: augmentationDataset
-        description: augmentation dataset
-        value: null
-        data_type: dataset
-        required: false
   - name: inputs
     params:
-      - name: dataset
-        description: dataset
+      - name: name
+        description: description
+        value: null
+        data_type: model
+        required: true
+      - name: second
+        description: description
         value: null
         data_type: dataset
         required: true
-      - name: augmentationDataset
-        description: augmentation dataset
+  - name: outputs
+    params:
+      - name: data
+        description: description
         value: null
         data_type: dataset
         required: false
-  - name: outputs
+  - name: new
     params:
-      - name: dataset
-        description: dataset
+      - name: newdd
+        description: description
         value: null
         data_type: dataset
-        required: true
-
+        required: false
+  
