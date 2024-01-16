@@ -13,7 +13,7 @@ param_groups:
         required: false
   - name: inputs
     params:
-      - name: dataset
+      - name: dataset1
         description: dataset
         value: null
         data_type: dataset
@@ -25,7 +25,7 @@ param_groups:
         required: false
   - name: outputs
     params:
-      - name: dataset
+      - name: dataset2
         description: dataset
         value: null
         data_type: dataset
